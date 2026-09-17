@@ -27,6 +27,12 @@
 - Attach workflow that works: not yet tested.
 - Injection vector that works (proxy DLL name / injector / framework): not yet tested.
 
+**🎮 2026-09-17 (home PC `RTX`, `/lm`) — FIRST LIVE LOOK.**
+- **Runs:** Runs and reaches the main-menu background `[verified-live 2026-09-17, n=3]`. Window title: `Bulletstorm: Full Clip Edition (64-bit, DX11)`. Via Steam it runs fullscreen and minimises whenever focus is lost.
+- **With our file added:** A 64-bit `dxgi.dll` proxy in `Binaries\Win64\` loads and the game runs with it `[verified-live 2026-09-17, n=1]`: `CreateDXGIFactory`, `CompatValue`, `CreateDXGIFactory1`. ⭐ **The game ships `StormGame-Win64-Shipping.pdb`** — full debug symbols next to the exe `[measured 2026-09-17]`, which should make the camera search far cheaper than on any other UE3 project here. The proxy comes from the shared generator `staging/_shared/proxy-gen/` (every export of the real system dll re-exported with the same ordinals; first call of each export logged). 
+- **Windowed (for measuring; 1280×720 keeps aspect-keyed numbers the same on both PCs):** Start `Binaries\Win64\StormGame-Win64-Shipping.exe -windowed ResX=1280 ResY=720` directly → 1280×720 client window `[verified-live 2026-09-17, n=2]`.
+- **Driving it:** Direct exe launch with the flags above (`steam_appid.txt` is present). `WM_CLOSE` exits cleanly.
+
 ## 5. Threading & frame structure
 - Immediate context only, or deferred contexts + command lists?:
 - Which thread(s) do what; render-thread name(s):
