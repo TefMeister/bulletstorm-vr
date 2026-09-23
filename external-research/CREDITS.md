@@ -14,3 +14,8 @@ are not, or you are a rights holder who wants something corrected or removed, em
 - **FRAMED Screenshot Community** — https://framedsc.com/GameGuides/bulletstorm.htm
 - Steam tweak guide authors — https://steamcommunity.com/sharedfiles/filedetails/?id=904933469
 - **PCGamingWiki**
+
+## Sources (2026-09-23)
+
+- **phunkaeg**, VR Modding Playbook — https://github.com/phunkaeg/vr-modding-playbook
+- **Mastersellz**, BL1GOTYVR — https://github.com/Mastersellz/BL1GOTYVR
