@@ -43,7 +43,14 @@
   other), with **shader-reflection / disassembly evidence**:
 - Exact constant-buffer slot, parameter name(s), byte offset(s), layout,
   handedness, row/column convention:
-- Where projection `P` / FOV comes from:
+- Where projection `P` / FOV comes from: **the CPU side is named by the shipped PDB** (2026-09-28, `/pd`):
+  `ULocalPlayer::CalcSceneView` (RVA `0x615bb0`, 4438 bytes) builds the per-frame view from
+  `APlayerController::GetPlayerViewPoint` (`0x3e23d0`) / `ACamera::GetCameraViewPoint` (`0x3c0e20`) into
+  `FSceneView::FSceneView` (`0x938680`, `0x9382d0`, `0x964110`); a global `GViewProjectionMatrix` sits at
+  `0x3991580` `[inferred-static 2026-09-28]`. Hook point for per-eye offset + projection swap: `CalcSceneView`.
+  UE3's 3D Vision path is compiled in (`GAllowNvidiaStereo3d`, `FD3D11DynamicRHI::CreateStereoFixTexture`) and
+  enabled in `BaseEngine.ini:297`. Full table: `dev-archive/recon/2026-09-28-pdb-camera-symbols/`.
+  Tool: `dev-archive/tools/pdb_symbols.py` (dbghelp; `llvm-pdbutil` cannot open this PDB).
 - The per-eye override maths (`K_eye = …`):
 
 ## 7. Constant-buffer fill mechanism
@@ -62,7 +69,7 @@
 ## 9. cvar / console cheat sheet
 | command / cvar | effect | use |
 |---|---|---|
-| | | |
+| `~` (Tilde) | opens the console: `ConsoleClassName=Engine.Console`, `ConsoleKey=Tilde`, `TypeKey=TAB` (`Engine/Config/BaseInput.ini:253`, no override in `StormGame/Config`); `UConsole` is compiled in `[inferred-static 2026-09-28]` | untested live: the `[FLAT]` row |
 
 ## 10. Autonomous harness recipe (this game)
 - Launch to a known scene (commands used):
