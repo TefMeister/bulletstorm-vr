@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-09-23 (estate sweep) — CHECK-IN.** Checked against phunkaeg's *VR Modding Playbook*: BL1GOTYVR on Borderlands Enhanced is the closest UE3 + D3D11 + 64-bit VR mod; its seams folded into a topic for the first static look.
+**Last `/gr` pass: 2026-09-29 (estate sweep) — CHECK-IN.** Inbox empty. Nothing new: both starred rows are disassembly of our own binary, so nothing was searched.
+
+_Previous: **Last `/gr` pass: 2026-09-23 (estate sweep) — CHECK-IN.** Checked against phunkaeg's *VR Modding Playbook*: BL1GOTYVR on Borderlands Enhanced is the closest UE3 + D3D11 + 64-bit VR mod; its seams folded into a topic for the first static look._
 
 _Previous: **Last `/gr` pass: 2026-09-17 (estate sweep) — CHECK-IN.** First pass: folder bootstrapped; one topic on the public camera tool and the ini bindings route._
 
