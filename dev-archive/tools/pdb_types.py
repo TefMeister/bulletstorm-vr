@@ -13,6 +13,7 @@ import sys
 dbghelp = ctypes.WinDLL("dbghelp")
 MAX_NAME = 2000
 BASE = 0x10000000           # a fake load address, as in pdb_symbols.py
+FAKE_PROCESS = 0x1235       # dbghelp only needs a unique handle value, not a real process
 
 # IMAGEHLP_SYMBOL_TYPE_INFO values (dbghelp.h)
 TI_GET_SYMTAG, TI_GET_SYMNAME, TI_GET_LENGTH, TI_GET_TYPE = 0, 1, 2, 4
@@ -77,7 +78,7 @@ def members(proc, base, type_id):
 
 def main():
     exe, names = os.path.abspath(sys.argv[1]), sys.argv[2:]
-    proc = wt.HANDLE(0x1235)
+    proc = wt.HANDLE(FAKE_PROCESS)
     dbghelp.SymSetOptions(0x2 | 0x4)
     if not dbghelp.SymInitialize(proc, os.path.dirname(exe).encode(), False):
         raise SystemExit("SymInitialize failed")
