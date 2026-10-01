@@ -51,7 +51,16 @@
   UE3's 3D Vision path is compiled in (`GAllowNvidiaStereo3d`, `FD3D11DynamicRHI::CreateStereoFixTexture`) and
   enabled in `BaseEngine.ini:297`. Full table: `dev-archive/recon/2026-09-28-pdb-camera-symbols/`.
   Tool: `dev-archive/tools/pdb_symbols.py` (dbghelp; `llvm-pdbutil` cannot open this PDB).
-- The per-eye override maths (`K_eye = …`):
+- **2026-10-01 (`/pd`): the hook point, read from the code.** `CalcSceneView` builds the view matrix in its frame at
+  `[rbp+0x60]` (−ViewLocation translation × `FInverseRotationMatrix`) and the projection at `[rbp+0xb0]`
+  (`FPerspectiveMatrix`, then one entry `[rbp+0xd0]` overwritten from screen extents), and passes `&ViewMatrix` and
+  `&ProjectionMatrix` as stack args 16 and 17 (`[rsp+0x80]`, `[rsp+0x88]`) to `FSceneView::FSceneView`
+  (`0x140938680`) at `0x140616bac`; the argument order matches the struct (`FSceneView` +0x80 ViewMatrix, +0xc0
+  ProjectionMatrix, derived matrices from +0x200, ViewOrigin +0x3e0) `[inferred-static 2026-10-01]`. Hook: detour
+  the constructor, filter return address `0x140616bb1`, swap both inputs; the constructor derives the rest.
+  Layout tool `dev-archive/tools/pdb_types.py`; note `modding-notes/2026-10-01-pd-calcsceneview-hands-the-view-and-projection-to-fsceneview.md`.
+- The per-eye override maths (`K_eye = …`): view `ViewMatrix · T(−eye_offset)` (row vectors, UE3 view space, cm),
+  projection replaced whole by the eye's off-centre one `[hypothesis]`.
 
 ## 7. Constant-buffer fill mechanism
 - Map/DISCARD ring / UpdateSubresource / D3D11.1 offset / **persistent map +

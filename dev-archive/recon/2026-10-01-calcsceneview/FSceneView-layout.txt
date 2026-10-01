@@ -1,0 +1,64 @@
+== FSceneView (1520 bytes)
+  +0x0000     8  Family
+  +0x0008     8  State
+  +0x0010     4  ParentViewIndex
+  +0x0014     8  ParentViewFamily
+  +0x001c     8  ActorVisibilityHistory
+  +0x0024     8  ViewActor
+  +0x002c     8  PostProcessChain
+  +0x0034     8  PostProcessSettings
+  +0x003c    16  PostProcessSceneProxies  : TArray<FPostProcessSceneProxy *,FDefaultAllocator>
+  +0x004c     8  Drawer
+  +0x0054     4  X
+  +0x0058     4  Y
+  +0x005c     4  ClipX
+  +0x0060     4  ClipY
+  +0x0064     4  SizeX
+  +0x0068     4  SizeY
+  +0x006c     4  RenderTargetX
+  +0x0070     4  RenderTargetY
+  +0x0074     4  RenderTargetSizeX
+  +0x0078     4  RenderTargetSizeY
+  +0x007c     4  FrameNumber
+  +0x0080    64  ViewMatrix  : FMatrix
+  +0x00c0    64  ProjectionMatrix  : FMatrix
+  +0x0100    16  BackgroundColor  : FLinearColor
+  +0x0110    16  OverlayColor  : FLinearColor
+  +0x0120    16  ColorScale  : FLinearColor
+  +0x0130    16  DiffuseOverrideParameter  : FVector4
+  +0x0140    16  SpecularOverrideParameter  : FVector4
+  +0x0150    72  HiddenPrimitives  : TSet<UPrimitiveComponent *,DefaultKeyFuncs<UPrimitiveComponent *,0>,FDefaultSetAllocator>
+  +0x0198    72  ShowActors  : TSet<AActor *,DefaultKeyFuncs<AActor *,0>,FDefaultSetAllocator>
+  +0x01e0     8  ScreenDoorRandomOffset  : FVector2D
+  +0x01e8    24  DepthOfFieldParams  : FDepthOfFieldParams
+  +0x0200    64  TranslatedViewMatrix  : FMatrix
+  +0x0240    64  TranslatedViewProjectionMatrix  : FMatrix
+  +0x0280    64  InvTranslatedViewProjectionMatrix  : FMatrix
+  +0x02c0    12  PreViewTranslation  : FVector
+  +0x02cc    12  TemporalAAParameters  : FTemporalAAParameters
+  +0x02e0    64  ViewProjectionMatrix  : FMatrix
+  +0x0320    64  InvProjectionMatrix  : FMatrix
+  +0x0360    64  InvViewMatrix  : FMatrix
+  +0x03a0    64  InvViewProjectionMatrix  : FMatrix
+  +0x03e0    16  ViewOrigin  : FVector4
+  +0x03f0   288  ViewFrustum  : FConvexVolume
+  +0x0510     4  bHasNearClippingPlane
+  +0x0520    16  NearClippingPlane  : FPlane
+  +0x0530     4  NearClippingDistance
+  +0x0534     4  bReverseCulling
+  +0x0540    16  InvDeviceZToWorldZTransform  : FVector4
+  +0x0550    16  ScreenPositionScaleBias  : FVector4
+  +0x0560     4  LODDistanceFactor
+  +0x0564     4  LODDistanceFactorSquared
+  +0x0568     4  bCameraCut
+  +0x056c     4  bUseLDRSceneColor
+  +0x0570     4  bIsGameView
+  +0x0574     4  bForceLowestMassiveLOD
+  +0x0578     4  bRenderTemporalAA
+  +0x057c     4  bForceClear
+  +0x0580    28  DominantLightChannelAllocator  : FLightChannelAllocator
+  +0x059c     4  RenderingOverrides  : FRenderingPerformanceOverrides
+  +0x05a0     8  EditorViewBitflag
+  +0x05b0    16  OverrideLODViewOrigin  : FVector4
+  +0x05c0     4  bAllowTranslucentPrimitivesInHitProxy
+  +0x05c4    32  SpriteCategoryVisibility  : TBitArray<FDefaultBitArrayAllocator>
