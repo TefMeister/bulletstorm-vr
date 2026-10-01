@@ -55,3 +55,13 @@ two views is the next design question.
 - Anything live. Units: UE3 uses centimetres, so a 64 mm eye distance is 6.4 units `[hypothesis]`.
 - What exactly `[rbp+0xd0]` gets (traced to one store, formula not decoded).
 - Whether `GViewProjectionMatrix` (`0x3991580`) is read by anything that would then disagree with the per-eye view.
+
+## Later the same session: the detour is built
+
+`staging/bulletstorm-vr/proxy-dxgi/src/sceneview.c` + `sceneview_stub.S`: MinHook on `FSceneView::FSceneView`; a
+small assembly stub checks the return address (CalcSceneView's call), asks C for the view matrix to use, writes our
+copy's address into the caller's view slot (`[rsp+0x88]` at the constructor's entry) and jumps on. The test eye
+shift is `M[3][0] -= offset` on the copy (numpad 4/6 in 5 cm steps, 5 to reset); the game's own matrix is never
+written. A different exe build is refused by a 12-byte prologue check. Self-test on a stand-in caller that lays out
+the stack exactly as CalcSceneView does: 8 checks, pass `[verified-numerically 2026-10-01, n=8]`; it also caught a
+start-up ordering slip, fixed. Installed on the dev PC (`dxgi.dll` `4fe9ee7d0b0a`), not run.
