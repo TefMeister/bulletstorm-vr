@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-09-29 (estate sweep) — CHECK-IN.** Inbox empty. Nothing new: both starred rows are disassembly of our own binary, so nothing was searched.
+**Last `/gr` pass: 2026-10-04 (estate sweep) — CHECK-IN.** Inbox empty. The open two-views row has a worked UE3 answer in BL1GOTYVR (two owned views in one view family); pointer with its failure modes sent to the dossier inbox.
+
+_Previous: **Last `/gr` pass: 2026-09-29 (estate sweep) — CHECK-IN.** Inbox empty. Nothing new: both starred rows are disassembly of our own binary, so nothing was searched._
 
 _Previous: **Last `/gr` pass: 2026-09-23 (estate sweep) — CHECK-IN.** Checked against phunkaeg's *VR Modding Playbook*: BL1GOTYVR on Borderlands Enhanced is the closest UE3 + D3D11 + 64-bit VR mod; its seams folded into a topic for the first static look._
 
