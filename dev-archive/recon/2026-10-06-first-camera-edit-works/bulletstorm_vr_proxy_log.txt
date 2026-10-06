@@ -1,0 +1,12 @@
+[2026-10-06 13:16:20.565] === bulletstorm dxgi.dll proxy attached, PID 23328, exe E:\SteamLibrary\steamapps\common\Bulletstorm Full Clip Edition\Binaries\Win64\StormGame-Win64-Shipping.exe ===
+[2026-10-06 13:16:20.567] real dll: C:\Windows\system32\dxgi.dll (loaded at 00007FFC50240000), 19 of 19 exports resolved
+[2026-10-06 13:16:20.568] first call: CreateDXGIFactory (ordinal 10) thread 7160
+[2026-10-06 13:16:20.582] first call: CompatValue (ordinal 3) thread 7160
+[2026-10-06 13:16:21.048] first call: CreateDXGIFactory1 (ordinal 11) thread 7160
+[2026-10-06 13:24:25.822] === bulletstorm dxgi.dll proxy detached (process exit) ===
+[2026-10-06 13:24:45.529] === bulletstorm dxgi.dll proxy attached, PID 12100, exe E:\SteamLibrary\steamapps\common\Bulletstorm Full Clip Edition\Binaries\Win64\StormGame-Win64-Shipping.exe ===
+[2026-10-06 13:24:45.532] real dll: C:\Windows\system32\dxgi.dll (loaded at 00007FFC50240000), 19 of 19 exports resolved
+[2026-10-06 13:24:45.533] first call: CreateDXGIFactory (ordinal 10) thread 18828
+[2026-10-06 13:24:45.543] first call: CompatValue (ordinal 3) thread 18828
+[2026-10-06 13:24:45.853] first call: CreateDXGIFactory1 (ordinal 11) thread 18828
+[2026-10-06 13:26:14.211] === bulletstorm dxgi.dll proxy detached (process exit) ===
