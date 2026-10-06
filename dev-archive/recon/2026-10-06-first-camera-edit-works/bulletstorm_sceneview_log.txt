@@ -1,0 +1,12 @@
+[13:16:20.632] FSceneView::FSceneView at 00007FF670D18680: hook IN (status 0); exe at 00007FF6703E0000. Numpad 4/6 shift the eye 5 cm, 5 resets.
+[13:20:32.900] eye offset now +5.0 cm (0 views edited so far)
+[13:20:33.282] eye offset now +10.0 cm (23 views edited so far)
+[13:20:33.599] eye offset now +15.0 cm (42 views edited so far)
+[13:20:33.899] eye offset now +20.0 cm (60 views edited so far)
+[13:21:06.494] eye offset now +0.0 cm (2015 views edited so far)
+[13:21:08.627] eye offset now +5.0 cm (2143 views edited so far)
+[13:21:08.943] eye offset now +10.0 cm (2162 views edited so far)
+[13:21:09.243] eye offset now +15.0 cm (2180 views edited so far)
+[13:21:09.560] eye offset now +20.0 cm (2199 views edited so far)
+[13:21:11.849] eye offset now +0.0 cm (2331 views edited so far)
+[13:24:45.587] FSceneView::FSceneView at 00007FF670D18680: hook IN (status 0); exe at 00007FF6703E0000. Numpad 4/6 shift the eye 5 cm, 5 resets.

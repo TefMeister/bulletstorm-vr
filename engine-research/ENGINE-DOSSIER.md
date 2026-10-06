@@ -62,6 +62,41 @@
 - The per-eye override maths (`K_eye = …`): view `ViewMatrix · T(−eye_offset)` (row vectors, UE3 view space, cm),
   projection replaced whole by the eye's off-centre one `[hypothesis]`.
 
+**Prior art for two views per frame (drained from `/gr` 2026-10-04):** BL1GOTYVR, a UE3 / D3D11 / 64-bit
+mod like this one, renders both eyes in one frame by handing the render-command constructor a view family
+with **two owned views**, applying both eye positions from one frozen OpenXR pose, and splitting the
+side-by-side backbuffer into the two eye images; it falls back to alternate-eye rendering on a mismatch
+`[reported]`. Their two dead ends on this engine generation: calling `GameViewportClient::Draw` twice per
+frame corrupts the heap (`0xC0000374`), and writing into a scene view after its render command ran crashes
+`[reported]`. ⚠️ Writing asymmetric offsets into the projection removed the world while the HUD stayed, so
+they shift the camera position only, which is what our `FSceneView` detour does `[reported]`. Source:
+`external-research/topics/2026-09-23-a-ue3-d3d11-vr-mod-on-borderlands-enhanced-maps-the-seams.md`.
+
+**2026-10-06 (`/lm`, dev PC): ⭐⭐ THE FIRST CAMERA EDIT WORKS.** With `dxgi.dll` `4fe9ee7d0b0a` the log says
+`hook IN (status 0)`; numpad 6 x4 moves the eye +20 cm and `views edited` climbs from the first press. In Act 7
+Chapter 2, standing still: near things (the held gun, a pillar at the right) slide left far more than the ceiling
+lights and the enemy in the distance, the HUD text does not move, and numpad 5 snaps the view straight back. Done
+twice, 0 -> 20 -> 0 -> 20 -> 0 cm, same result each time `[verified-live 2026-10-06, n=2 cycles]`. The held gun moves
+with the world (it is drawn by the same view), as a near object should. Pictures and log:
+`dev-archive/recon/2026-10-06-first-camera-edit-works/`.
+
+**2026-10-06 (reader, static): the view family, mapped from the PDB.** RVAs from base `0x140000000`, all
+`[inferred-static 2026-10-06]`:
+- `FSceneViewFamily` (96 bytes): `+0x00 Views` is a `TArray<const FSceneView*>` (data, `+0x08` Num, `+0x0c` Max); then
+  RenderTarget `+0x10`, Scene `+0x18`, ShowFlags `+0x20`.
+- `UGameViewportClient::Draw` (`0x619630`) builds the family on its stack (`0x619c3f`), loops over the local players
+  (`0x619c7b`..`0x61a239`), calls `CalcSceneView` once per player (`0x619d15`); `CalcSceneView` appends the new view
+  pointer to `family.Views` (grow `0x616c1f`, store `0x616c6e`). One `BeginRenderingViewFamily` after the loop
+  (`0x61a27f`). **So split-screen already puts N views in one family and one render command.** A second family path
+  earlier in Draw (`0x619792`..`0x619a1c`) is unidentified `[hypothesis: an early-out path]`.
+- `BeginRenderingViewFamily` (`0x968830`) builds `FSceneRenderer` (`0x963a20`), which copies the family (copy
+  constructor `0x964cb0`, at `0x963aac`) and makes one `FViewInfo` per view (`0x964da0`, at `0x963cf9`) into renderer
+  `+0x68`. The render command (`FDrawSceneCommand`, vftable `0x1360b20`) carries only the renderer pointer.
+- Reading: the engine's own split-screen loop is the natural place to add a second eye (one more view appended to
+  the same family before `BeginRenderingViewFamily`). That is a design choice for the `[PD]` two-views row, not
+  decided here. Detail and disassembly listings: `dev-archive/recon/2026-10-06-first-camera-edit-works/` and
+  `staging/bulletstorm-vr/tools/`.
+
 ## 7. Constant-buffer fill mechanism
 - Map/DISCARD ring / UpdateSubresource / D3D11.1 offset / **persistent map +
   memcpy** (trap):
@@ -81,9 +116,24 @@
 | `~` (Tilde) | opens the console: `ConsoleClassName=Engine.Console`, `ConsoleKey=Tilde`, `TypeKey=TAB` (`Engine/Config/BaseInput.ini:253`, no override in `StormGame/Config`); `UConsole` is compiled in `[inferred-static 2026-09-28]` | untested live: the `[FLAT]` row |
 
 ## 10. Autonomous harness recipe (this game)
-- Launch to a known scene (commands used):
-- In-process input / camera drive method that worked:
-- Frame-capture method; where images land:
+- **Window:** `FullScreen=False`, `ResX=1280`, `ResY=720` in
+  `Documents/My Games/Bulletstorm Full Clip Edition/StormGame/Config/StormSystemSettings.ini` (backup
+  `*.bak-2026-10-06-pre-1280x720`). The `ResX/ResY` command-line switches are IGNORED on the dev PC when this file says
+  1920x1080: the window came up at 1850x1041. With the file changed, client 1280x720 and the screen stays 1920x1080
+  `[measured 2026-10-06, n=1]`. The setting survived a menu quit.
+- **Launch:** `Binaries/Win64/StormGame-Win64-Shipping.exe -windowed`, working directory `Binaries/Win64`; title screen
+  after about 45 s.
+- **Input:** `SendInput` with SCANCODES. `keybd_event` with virtual-key codes does nothing here `[verified-live 2026-10-06]`.
+  Enter `0x1C`, Space `0x39`, Esc `0x01`, arrows extended (`e048` up, `e050` down, `e04b` left), numpad 4/5/6 `0x4B/0x4C/0x4D`.
+- **To gameplay:** Enter (title) -> Space (autosave notice) -> Space (Campaign) -> Space (Continue; the dev PC's save is
+  Act 7 Chapter 2) -> wait about 40 s -> Space (chapter card) `[verified-live 2026-10-06, n=1]`.
+- **Quit:** Esc -> pause menu, cursor on Resume; Down x5 to Exit to Main Menu (VERIFY: the cursor does not always
+  start at the top after returning from Options) -> Space -> Space (confirm) -> main menu; Up x1 wraps to Quit ->
+  Space -> Space `[verified-live 2026-10-06, n=2]`.
+- **Capture:** BitBlt from the screen DC over the window's client rect.
+- **Music:** only in the binary profile (`Steam/userdata/<id>/501590/remote/profile.bin`, Steam Cloud), not in any ini
+  `[inferred-static 2026-10-06]` (reader). Set to zero in Options -> Audio -> Music Volume on 2026-10-06 (Left x25).
+  Voice Volume was already at zero before this session; left as found.
 
 ## 11. Dead ends & false leads (save future time)
 - none yet.
