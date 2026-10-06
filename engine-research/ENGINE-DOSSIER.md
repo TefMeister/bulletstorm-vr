@@ -97,6 +97,22 @@ with the world (it is drawn by the same view), as a near object should. Pictures
   decided here. Detail and disassembly listings: `dev-archive/recon/2026-10-06-first-camera-edit-works/` and
   `staging/bulletstorm-vr/tools/`.
 
+**2026-10-06 (`/lm`, dev PC, on Opus): ⭐⭐⭐ TWO EYES PER FRAME, BY THE SPLIT-SCREEN ROUTE.** `stereo.c` detours
+`ULocalPlayer::CalcSceneView` (`0x615bb0`) and, with numpad 7 on, calls the real one twice for the one player: `Size.X`
+halved, `Origin.X` 0 then 0.5, the eye set to -/+ half the eye distance through the `FSceneView` detour. Both views land
+in the same family and render side by side; the game keeps running (1,295 pairs in 22 s), and off restores the normal
+picture `[verified-live 2026-10-06, n=1 session, two launches]`. Near/far order is right in both halves (gun shifts most,
+pillar less, distant enemy barely) `[verified-live 2026-10-06, n=1]`.
+- **Each eye needs its own ViewState.** Sharing the player's one smeared the whole picture (motion blur and temporal
+  history saw the camera jump between eyes every frame). `ViewState2` (+0xd8) is null in play, so the left eye gets one
+  from the engine's own `AllocateViewState` (`0x940210`, no arguments, allocates 0x1910 bytes), made once and swapped in
+  for the left call only; that removed the smear `[verified-live 2026-10-06, n=1]`.
+- **The HUD is drawn only in the right half.** Draw's per-player work after `CalcSceneView` uses the returned (right)
+  view `[inferred-static 2026-10-06]`; the HUD per eye is the next job.
+- Not yet: per-eye off-centre projection (each half currently gets the engine's own symmetric projection for a 640x720
+  view), headset output, the HUD. The rebuilt proxy has this PC's 19 dxgi exports; rebuild on the home PC.
+  Evidence: `dev-archive/recon/2026-10-06-two-eyes-split-screen-route/`.
+
 ## 7. Constant-buffer fill mechanism
 - Map/DISCARD ring / UpdateSubresource / D3D11.1 offset / **persistent map +
   memcpy** (trap):

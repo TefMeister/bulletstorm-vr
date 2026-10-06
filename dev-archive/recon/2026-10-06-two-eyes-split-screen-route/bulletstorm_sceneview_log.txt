@@ -1,0 +1,13 @@
+[13:47:19.082] FSceneView::FSceneView at 00007FF740AF8680: hook IN (status 0); exe at 00007FF7401C0000. Numpad 4/6 shift the eye 5 cm, 5 resets.
+[13:47:19.318] CalcSceneView at 00007FF7407D5BB0: stereo hook IN (status 0). Numpad 7 = side-by-side two eyes on/off, 9/3 = eye distance +/- 2 cm.
+[13:49:30.542] stereo ON (eye distance 6.4 cm, 0 pairs drawn so far)
+[13:49:30.542] first stereo pair: Origin (0.000, 0.000) Size (1.000, 1.000) ViewState 000001E020032040 ViewState2 0000000000000000
+[13:49:30.542] first stereo pair drawn: left view 000001E087CC9D00, right view 000001E083091D00
+[13:50:32.461] stereo OFF (eye distance 6.4 cm, 3712 pairs drawn so far)
+[13:51:51.763] FSceneView::FSceneView at 00007FF740AF8680: hook IN (status 0); exe at 00007FF7401C0000. Numpad 4/6 shift the eye 5 cm, 5 resets.
+[13:51:51.965] CalcSceneView at 00007FF7407D5BB0: stereo hook IN (status 0). Numpad 7 = side-by-side two eyes on/off, 9/3 = eye distance +/- 2 cm.
+[13:53:51.513] stereo ON (eye distance 6.4 cm, 0 pairs drawn so far)
+[13:53:51.513] first stereo pair: Origin (0.000, 0.000) Size (1.000, 1.000) ViewState 000001D5F490E040 ViewState2 0000000000000000
+[13:53:51.513] left eye ViewState allocated: 000001D62446E040
+[13:53:51.513] first stereo pair drawn: left view 000001D602773200, right view 000001D61A6CC100
+[13:54:13.097] stereo OFF (eye distance 6.4 cm, 1295 pairs drawn so far)
