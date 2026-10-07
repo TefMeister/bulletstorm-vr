@@ -1,0 +1,4 @@
+[16:54:02.712] hud per eye ON: HUD.PostRender calls 60, left passes drawn 60, skipped: no views 0, view mismatch 0, no canvas 0; last shift (-640, 0) px
+[16:54:03.711] hud per eye ON: HUD.PostRender calls 60, left passes drawn 60, skipped: no views 0, view mismatch 0, no canvas 0; last shift (-640, 0) px
+[16:54:04.712] hud per eye ON: HUD.PostRender calls 60, left passes drawn 60, skipped: no views 0, view mismatch 0, no canvas 0; last shift (-640, 0) px
+[16:54:05.712] hud per eye ON: HUD.PostRender calls 60, left passes drawn 60, skipped: no views 0, view mismatch 0, no canvas 0; last shift (-640, 0) px
