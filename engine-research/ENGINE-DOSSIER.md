@@ -156,3 +156,13 @@ pillar less, distant enemy barely) `[verified-live 2026-10-06, n=1]`.
 
 ## 12. Open risks toward the North Star
 - ⚠️ Not installed yet — no static work is possible until the download finishes.
+
+## 2026-10-07 (`/lm`): THE HUD IN BOTH EYES
+
+Folded and deleted: inbox `2026-10-07-pd-hud-per-eye.md`. Evidence: `dev-archive/recon/2026-10-07-hud-per-eye/`.
+`UGameViewportClient::Draw` (`0x619630`) keeps the view CalcSceneView returned (our right eye) and sets the canvas
+from it before HUD.PostRender (ProcessEvent call at `0x61aa84`, returns to `0x61aa8a`). Our `hud_eyes.c` hooks
+`AActor::ProcessEvent`, and after the right-eye PostRender re-runs it with the left view and a relative transform of
+(left corner − right corner) = (−640, 0) px. Live: 60 of 60 HUD passes drawn in both halves `[verified-live 2026-10-07,
+n=1]`. Numpad 1 toggles (file `bulletstorm_hud_per_eye.on` starts it on). Not handled: console/interactions,
+subtitles (full screen), PreRender per eye.
