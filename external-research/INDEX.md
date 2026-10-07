@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-10-04 (estate sweep) — CHECK-IN.** Inbox empty. The open two-views row has a worked UE3 answer in BL1GOTYVR (two owned views in one view family); pointer with its failure modes sent to the dossier inbox.
+**Last `/gr` pass: 2026-10-07 (estate sweep) — CHECK-IN.** Inbox empty. No new topic; Metro's finding (bind OpenXR to the game's own device, no shared texture) sent to the dossier inbox for the headset-output row. No other Bulletstorm VR mod found.
+
+_Previous: **Last `/gr` pass: 2026-10-04 (estate sweep) — CHECK-IN.** Inbox empty. The open two-views row has a worked UE3 answer in BL1GOTYVR (two owned views in one view family); pointer with its failure modes sent to the dossier inbox._
 
 _Previous: **Last `/gr` pass: 2026-09-29 (estate sweep) — CHECK-IN.** Inbox empty. Nothing new: both starred rows are disassembly of our own binary, so nothing was searched._
 
