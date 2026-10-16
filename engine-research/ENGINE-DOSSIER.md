@@ -155,7 +155,9 @@ pillar less, distant enemy barely) `[verified-live 2026-10-06, n=1]`.
 - none yet.
 
 ## 12. Open risks toward the North Star
-- ⚠️ Not installed yet — no static work is possible until the download finishes.
+- ~~Not installed yet~~ (stale since 2026-09-17: installed on both PCs; on the dev PC under `C:\SteamLibrary`).
+- Now (2026-10-16): whether the game's device takes the picture hand-over, whether one view pair maps to one Present,
+  and whether UE3 assumes a symmetric projection anywhere else. All three are answered by the first simulator run.
 
 ## 2026-10-07 (`/lm`): THE HUD IN BOTH EYES
 
@@ -166,3 +168,22 @@ from it before HUD.PostRender (ProcessEvent call at `0x61aa84`, returns to `0x61
 (left corner − right corner) = (−640, 0) px. Live: 60 of 60 HUD passes drawn in both halves `[verified-live 2026-10-07,
 n=1]`. Numpad 1 toggles (file `bulletstorm_hud_per_eye.on` starts it on). Not handled: console/interactions,
 subtitles (full screen), PreRender per eye.
+
+## 2026-10-16 (`/pd`, no launch): THE HEADSET BRIDGE AND EACH EYE'S OWN LENS, BUILT, UNSEEN
+
+Note: `modding-notes/2026-10-16-pd-headset-bridge-and-per-eye-lens.md`. Build `dxgi.dll` `f71d78ed277e`, installed on
+the dev PC with `bulletstorm_xr.ini` `openxr=0`.
+- Metro Exodus's OpenXR bridge copied whole into `src/xr/` (own headset device, never-wait hand-over LOCK/RING/CPU).
+  Side by side: the whole back buffer goes to both eyes, each eye's layer shows its own half, each with its own record
+  `[verified-numerically 2026-10-16]` (two real D3D11 devices on the GTX 1660 SUPER, every way, 0 wrong records).
+- **The per-eye off-centre projection goes in at the same place as the eye shift**: the `FSceneView` constructor's
+  projection argument (CalcSceneView's `[rsp+0x88]`, the stub's `[rsp+0xd8]`) is pointed at a copy whose x and y map
+  the headset eye's tangents exactly; depth untouched `[verified-numerically 2026-10-16]` (self-test). Whether UE3 uses
+  anything else that assumes a symmetric projection is `[hypothesis]`.
+- UE3 view space = Metro's (x right, y up, z forward, row vectors), so Metro's head maths applies unchanged
+  `[inferred-static 2026-10-16]` (from UE3's view-matrix swizzle and our 2026-10-06 eye shift on `M[3][0]` moving the
+  picture sideways). World scale 1 unit = 1 cm `[hypothesis]`.
+- Folded and deleted: inbox `2026-10-07-gr-headset-output-on-the-game-device.md` (the `/gr` lead to bind OpenXR to the
+  game's own device). Not taken: The Evil Within's session on the game's device stalled the game inside the runtime
+  (2026-10-06), so the bridge keeps its own device; the never-wait hand-over makes the keyed-mutex question moot (it
+  falls to RING or CPU by itself). If the own-device route ever fails here, the `/gr` route is the fallback to try.
