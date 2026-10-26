@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-10-07 (estate sweep) — CHECK-IN.** Inbox empty. No new topic; Metro's finding (bind OpenXR to the game's own device, no shared texture) sent to the dossier inbox for the headset-output row. No other Bulletstorm VR mod found.
+**Last `/gr` pass: 2026-10-26 (estate sweep) — CHECK-IN.** Inbox empty; watch check only: Bulletstorm VR (Incuvo, 2024) is still the only VR version, an official port, and no fan VR mod was found. Nothing new.
+
+_Previous: **Last `/gr` pass: 2026-10-07 (estate sweep) — CHECK-IN.** Inbox empty. No new topic; Metro's finding (bind OpenXR to the game's own device, no shared texture) sent to the dossier inbox for the headset-output row. No other Bulletstorm VR mod found._
 
 _Previous: **Last `/gr` pass: 2026-10-04 (estate sweep) — CHECK-IN.** Inbox empty. The open two-views row has a worked UE3 answer in BL1GOTYVR (two owned views in one view family); pointer with its failure modes sent to the dossier inbox._
 
