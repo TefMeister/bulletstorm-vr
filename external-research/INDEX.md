@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-10-26 (estate sweep) — CHECK-IN.** Inbox empty; watch check only: Bulletstorm VR (Incuvo, 2024) is still the only VR version, an official port, and no fan VR mod was found. Nothing new.
+**Last `/gr` pass: 2026-11-07 (estate sweep) — CHECK-IN.** Inbox empty; watch check only (web and GitHub search): the official Bulletstorm VR (2024) is still the only VR version; no fan VR mod. Nothing new.
+
+_Previous: **Last `/gr` pass: 2026-10-26 (estate sweep) — CHECK-IN.** Inbox empty; watch check only: Bulletstorm VR (Incuvo, 2024) is still the only VR version, an official port, and no fan VR mod was found. Nothing new._
 
 _Previous: **Last `/gr` pass: 2026-10-07 (estate sweep) — CHECK-IN.** Inbox empty. No new topic; Metro's finding (bind OpenXR to the game's own device, no shared texture) sent to the dossier inbox for the headset-output row. No other Bulletstorm VR mod found._
 
